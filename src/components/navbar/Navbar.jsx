@@ -1,3 +1,5 @@
+import UseAnimations from 'react-useanimations'
+import menu2 from 'react-useanimations/lib/menu2'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineUser } from 'react-icons/ai'
 import { useState } from 'react'
@@ -18,7 +20,7 @@ const links = [
 ]
 
 export const Navbar = () => {
-  const [showMenu, setShowMenu] = useState(false)
+  const [checked, setChecked] = useState(true)
   return (
     <header className="container mx-auto">
       <nav className="bg-slate-500 flex justify-between items-center p-4">
