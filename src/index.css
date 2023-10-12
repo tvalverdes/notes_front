@@ -8,3 +8,6 @@ html, body {
 @tailwind components;
 @tailwind utilities;
 
+h1, p, span {
+  color:white;
+}

@@ -7,9 +7,9 @@ import { ModalWindow } from './components/Modal/ModalWindow'
 function App() {
   return (
     <>
-      {/* 
-      <Navbar /> */}
-      <ModalWindow component={<Login />} />
+      <div className="bg-primary-300 h-screen z-20">
+        <ModalWindow component={<Login />} />
+      </div>
     </>
   )
 }

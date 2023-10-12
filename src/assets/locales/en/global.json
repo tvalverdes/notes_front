@@ -1,0 +1,16 @@
+{
+  "mailRequired": "You must enter your mail",
+  "passwordRequired": "You must enter your password",
+  "errorMailLength": "The email must not exceed 254 characters",
+  "loginButtonText": "Log in",
+  "forgotPassword": "Forgot my password",
+  "placeholderMail": "Email",
+  "placeholderPassword": "Password",
+  "mailValidationMessage": "Invalid email",
+
+  "welcomeText": "Welcome to Notely",
+  "helperText": "Enter your credentials to access your notes",
+  "login": "Log in",
+  "register": "Register",
+  "rememberMe": "Remember me"
+}

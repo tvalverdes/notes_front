@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-export const Login = () => {
+export const Register = () => {
   const { t } = useTranslation()
   const schema = yup.object({
     mail: yup
@@ -57,6 +57,14 @@ export const Login = () => {
             textColor="white"
           />
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+          <Input
+            {...register('confirmPassword')}
+            type="password"
+            placeholder={t('placeholderPassword')}
+            errorBorderColor="crimson"
+            textColor="white"
+          />
+          <FormErrorMessage>{errors.confirmPassword?.message}</FormErrorMessage>
         </FormControl>
         <div className="flex justify-between">
           <Checkbox
