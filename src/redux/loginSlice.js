@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  showLogin: true,
+  toggle: true,
 }
 
 export const showLoginSlice = createSlice({
@@ -10,14 +10,13 @@ export const showLoginSlice = createSlice({
   initialState,
   //Reducers
   reducers: {
-    changeToRegister: (state, action) => {
-      const { showLogin } = action.payload
-      state.showLogin = showLogin
+    changeModal: (state, action) => {
+      return action.payload
     },
   },
 })
 
 //Actions viene del método createSlice de toolkit, y el changeToRegister no
 //es el reducer declarado arriba, sino su acción
-export const { changeToRegister } = showLoginSlice.actions
+export const { changeModal } = showLoginSlice.actions
 export default showLoginSlice.reducer

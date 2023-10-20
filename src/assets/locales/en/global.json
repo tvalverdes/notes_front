@@ -7,6 +7,7 @@
   "placeholderMail": "Email",
   "placeholderPassword": "Password",
   "mailValidationMessage": "Invalid email",
+  "passwordMin": "Use at least 8 characters",
 
   "welcomeText": "Welcome to Notely",
   "helperText": "Enter your credentials to access your notes",

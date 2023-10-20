@@ -7,12 +7,13 @@ import {
   Checkbox,
 } from '@chakra-ui/react'
 import { InputButton } from '../button/Button'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
 export const Login = () => {
+  useEffect(() => {})
   const { t } = useTranslation()
   const schema = yup.object({
     mail: yup
@@ -30,7 +31,6 @@ export const Login = () => {
   })
   const { errors } = formState
   const onSubmit = (data) => console.log(data)
-  console.log(errors)
   const [data, setData] = useState('')
 
   return (
@@ -43,7 +43,9 @@ export const Login = () => {
           <Input
             {...register('mail')}
             placeholder={t('placeholderMail')}
-            isInvalid={errors.mail}
+            focusBorderColor="#E59500"
+            isInvalid={errors.mail !== undefined} //errors.mail returns true always, that's why I'm not equals
+            borderColor="white"
             errorBorderColor="crimson"
             textColor="white"
             onChange={() => trigger('mail')}
@@ -52,6 +54,8 @@ export const Login = () => {
           <Input
             {...register('password')}
             type="password"
+            isInvalid={errors.mail !== undefined}
+            focusBorderColor="#E59500"
             placeholder={t('placeholderPassword')}
             errorBorderColor="crimson"
             textColor="white"
@@ -69,7 +73,7 @@ export const Login = () => {
           </Checkbox>
           <Link color="#E59500">{t('forgotPassword')}</Link>
         </div>
-        <InputButton text={t('loginButtonText')} />
+        <InputButton text={t('loginButtonText')} method={onSubmit} />
       </form>
     </section>
   )
