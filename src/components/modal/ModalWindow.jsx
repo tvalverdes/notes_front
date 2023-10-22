@@ -5,17 +5,13 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
-  ModalHeader,
   ModalOverlay,
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { SwitchAuthButton } from '../button/SwitchAuthButton'
-import { useDispatch, useSelector } from 'react-redux'
 import { changeModal } from '../../redux/loginSlice'
-import { useState } from 'react'
 
 export function ModalWindow({ component }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -24,8 +20,6 @@ export function ModalWindow({ component }) {
   } */
 
   const { t } = useTranslation()
-  const loginState = useSelector((state) => state.login)
-  const dispatch = useDispatch()
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>

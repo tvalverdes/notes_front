@@ -1,4 +1,3 @@
-'use client'
 import { useForm } from 'react-hook-form'
 import {
   Input,
@@ -11,13 +10,25 @@ import {
 import { useTranslation } from 'react-i18next'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { login } from '../../utils/login.utils'
+import { login } from '../../utils/auth.utils'
 import { SubmitButton } from '../button/SubmitButton'
 
 export const Login = () => {
   const { t } = useTranslation()
   const toast = useToast()
   const id = 'toast_id'
+  const showToast = (title, description, status) => {
+    if (!toast.isActive(id)) {
+      toast({
+        id,
+        title,
+        description,
+        status: status || 'error',
+        duration: 4000,
+        isClosable: false,
+      })
+    }
+  }
   const schema = yup.object({
     email: yup
       .string()
@@ -40,17 +51,18 @@ export const Login = () => {
     } else {
       const res = await login(data)
       if (res.status == 404) {
-        if (!toast.isActive(id)) {
-          toast({
-            id,
-            title: 'Credenciales incorrectas',
-            description: 'Corrige tu correo o contraseña y vuelve a intentarlo',
-            status: 'error',
-            duration: 4000,
-            isClosable: false,
-          })
-        }
+        return showToast(
+          'Credenciales incorrectas',
+          'Corrige tu correo o contraseña y vuelve a intentarlo'
+        )
       }
+      if (res.status == 500) {
+        return showToast(
+          'Servidor no disponible',
+          'Inténtalo de nuevo más tarde o contacta con el administrador'
+        )
+      }
+      showToast('Sesión iniciada correctamente', '¡Bienvenido!', 'success')
     }
   }
 
