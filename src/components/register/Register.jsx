@@ -6,11 +6,11 @@ import {
   Link,
   Checkbox,
 } from '@chakra-ui/react'
-import { InputButton } from '../button/Button'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { SubmitButton } from '../button/SubmitButton'
 
 export const Register = () => {
   const { t } = useTranslation()
@@ -64,7 +64,7 @@ export const Register = () => {
           />
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>
-        <InputButton text={t('register')} method={() => console.log('abc')} />
+        <SubmitButton text={t('register')} method={() => console.log('abc')} />
       </form>
     </section>
   )
