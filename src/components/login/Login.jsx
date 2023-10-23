@@ -12,10 +12,18 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { login } from '../../utils/auth.utils'
 import { SubmitButton } from '../button/SubmitButton'
+import { useDispatch, useSelector } from 'react-redux'
+import { enableNotes } from '../../redux/enableNotesSlice'
 
 export const Login = () => {
   const { t } = useTranslation()
   const toast = useToast()
+  const showNotes = useSelector((state) => state.enableNotes)
+  console.log(showNotes)
+  const dispatch = useDispatch()
+  const handleNotes = () => {
+    dispatch(enableNotes(!showNotes))
+  }
   const id = 'toast_id'
   const showToast = (title, description, status) => {
     if (!toast.isActive(id)) {
@@ -41,7 +49,7 @@ export const Login = () => {
       ),
     password: yup.string().trim().required(t('passwordRequired')),
   })
-  const { register, handleSubmit, formState, trigger, clearErrors } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   })
   const { errors } = formState
@@ -62,6 +70,7 @@ export const Login = () => {
           'Inténtalo de nuevo más tarde o contacta con el administrador'
         )
       }
+      handleNotes()
       showToast('Sesión iniciada correctamente', '¡Bienvenido!', 'success')
     }
   }

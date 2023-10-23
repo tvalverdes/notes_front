@@ -22,10 +22,9 @@ export function ModalWindow({ component }) {
   const { t } = useTranslation()
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
       <Modal
         motionPreset="slideInBottom"
-        isOpen={isOpen}
+        isOpen={true}
         onClose={onClose}
         size={'sm'}
         isCentered
