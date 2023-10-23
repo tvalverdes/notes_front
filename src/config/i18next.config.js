@@ -15,7 +15,7 @@ i18n.use(initReactI18next).init({
   },
   lng: 'es', // Establece el idioma predeterminado
   fallbackLng: 'en', // Idioma de respaldo en caso de que falten traducciones
-  debug: true, // Activa el modo de depuración
+  debug: false, // Activa el modo de depuración
   interpolation: {
     escapeValue: false, // Permite interpolación de variables
   },
