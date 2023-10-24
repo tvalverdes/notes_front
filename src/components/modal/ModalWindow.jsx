@@ -36,7 +36,7 @@ export function ModalWindow({ component, loading }) {
             <ModalCloseButton />
           </div>
           <ModalBody className="bg-primary-800/40 mx-1 rounded-lg flex flex-col justify-center items-center gap-4">
-            <Avatar name="Logo" size="lg" src="logo_notas.webp" />
+            <Avatar name="Logo" size="lg" src="logo.png" />
             <h1 className="text-3xl font-bold">{t('welcomeText')}</h1>
             <Text fontSize="sm">{t('helperText')}</Text>
             {component}
