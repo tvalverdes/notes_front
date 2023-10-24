@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { SwitchAuthButton } from '../button/SwitchAuthButton'
 import { changeModal } from '../../redux/loginSlice'
 
-export function ModalWindow({ component }) {
+export function ModalWindow({ component, loading }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   /* const isUserLogger = () => {
     document.
@@ -24,18 +24,18 @@ export function ModalWindow({ component }) {
     <>
       <Modal
         motionPreset="slideInBottom"
-        isOpen={true}
+        isOpen={!loading}
         onClose={onClose}
         size={'sm'}
         isCentered
       >
         <ModalOverlay />
-        <ModalContent className="mx-2">
-          <div className="absolute -top-12">
+        <ModalContent className="mx-2" bg={'transparent'}>
+          <div className="absolute mx-1 -top-12">
             <SwitchAuthButton />
             <ModalCloseButton />
           </div>
-          <ModalBody className="bg-primary-800/90 rounded-lg flex flex-col justify-center items-center gap-4">
+          <ModalBody className="bg-primary-800/40 mx-1 rounded-lg flex flex-col justify-center items-center gap-4">
             <Avatar name="Logo" size="lg" src="logo_notas.webp" />
             <h1 className="text-3xl font-bold">{t('welcomeText')}</h1>
             <Text fontSize="sm">{t('helperText')}</Text>
