@@ -13,9 +13,9 @@ function App() {
   const showLogin = useSelector((state) => state.login)
   const enableNotes = useSelector((state) => state.enableNotes)
   const [loading, setLoading] = useState(true)
-  useEffect(async () => {
-    await startServer()
-    setLoading(false)
+
+  useEffect(() => {
+    startServer().then(() => setLoading(false))
   }, [])
   return (
     <>
