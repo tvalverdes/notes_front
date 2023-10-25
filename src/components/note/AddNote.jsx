@@ -35,7 +35,7 @@ export const AddNote = ({ onNewNoteAdded }) => {
       return
     } else {
       const res = await createNote(data)
-      console.log(res)
+      onNewNoteAdded()
     }
   }
   return (

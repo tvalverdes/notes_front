@@ -34,10 +34,6 @@ function App() {
     loadNotes().then(() => setLoading(false))
   }, [isUserAuth])
 
-  /* useEffect(() => {
-    loadNotes()
-  }, [notes]) */
-
   return (
     <>
       <Navbar />
@@ -56,7 +52,7 @@ function App() {
                 )
               })}
             </div>
-            <AddNote onNewNoteAdded={notes} />
+            <AddNote onNewNoteAdded={loadNotes} />
           </>
         ) : (
           <ModalWindow

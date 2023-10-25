@@ -9,7 +9,7 @@
   "mailValidationMessage": "Invalid email",
   "passwordMin": "Use at least 8 characters",
 
-  "welcomeText": "Welcome to Notely",
+  "welcomeText": "Welcome to Notly",
   "helperText": "Enter your credentials to access your notes",
   "login": "Log in",
   "register": "Register",
