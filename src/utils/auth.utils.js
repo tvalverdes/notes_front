@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { API_URL } from '../config/config'
 axios.defaults.withCredentials = true
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
 export const login = async (data) => {
   try {
