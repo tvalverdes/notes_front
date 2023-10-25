@@ -32,3 +32,29 @@ export const registerUser = async (data) => {
     return error.response
   }
 }
+
+export const logout = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/auth/logout`, {
+      withCredentials: true,
+    })
+    return response
+  } catch (error) {
+    return error.response
+  }
+}
+
+/* export const isUserAuthenticated = async () => {
+  try {
+    const token = document.cookie.token
+    if (!token) {
+      return false
+    }
+    const response = await axios.get(`${API_URL}/auth/me`, {
+      withCredentials: true,
+    })
+    return response
+  } catch (error) {
+    return error.response
+  }
+} */

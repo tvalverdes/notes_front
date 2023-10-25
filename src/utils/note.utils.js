@@ -16,3 +16,14 @@ export const createNote = async (data) => {
     return error.response
   }
 }
+
+export const getNotes = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/notes`, {
+      withCredentials: true,
+    })
+    return response
+  } catch (error) {
+    return error.response
+  }
+}

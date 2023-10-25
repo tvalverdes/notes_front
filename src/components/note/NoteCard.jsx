@@ -9,17 +9,17 @@ import {
   Text,
 } from '@chakra-ui/react'
 
-export const NoteCard = () => {
+export const NoteCard = ({ title, text }) => {
   return (
     <Card>
       <CardHeader>
-        <Heading size="md">Client Report</Heading>
+        <Heading size="md">{title}</Heading>
       </CardHeader>
       <CardBody>
         <Stack divider={<StackDivider />} spacing="4">
           <Box>
             <Text pt="2" fontSize="sm" className="text-primary-500">
-              View a summary of all your clients over the last month.
+              {text}
             </Text>
           </Box>
         </Stack>

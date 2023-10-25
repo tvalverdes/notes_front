@@ -14,15 +14,14 @@ import { login } from '../../utils/auth.utils'
 import { SubmitButton } from '../button/SubmitButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { enableNotes } from '../../redux/enableNotesSlice'
+import { getNotes } from '../../utils/note.utils'
 
 export const Login = () => {
   const { t } = useTranslation()
   const toast = useToast()
-  const showNotes = useSelector((state) => state.enableNotes)
-
   const dispatch = useDispatch()
-  const handleNotes = () => {
-    dispatch(enableNotes(!showNotes))
+  const showNotes = () => {
+    dispatch(enableNotes(true))
   }
   const id = 'toast_id'
   const showToast = (title, description, status) => {
@@ -70,7 +69,8 @@ export const Login = () => {
           'Inténtalo de nuevo más tarde o contacta con el administrador'
         )
       }
-      handleNotes()
+      showNotes()
+      getNotes()
       showToast('Sesión iniciada correctamente', '¡Bienvenido!', 'success')
     }
   }

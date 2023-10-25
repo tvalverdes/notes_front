@@ -2,36 +2,54 @@
 import './App.css'
 import { Login } from './components/login/Login'
 import { ModalWindow } from './components/modal/ModalWindow'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Register } from './components/register/Register'
 import { NoteCard } from './components/note/NoteCard'
 import { useEffect, useState } from 'react'
 import { LoadingModal } from './components/modal/LoadingModal'
-import { startServer } from './utils/loading.utils'
 import { Navbar } from './components/navbar/Navbar'
 import { AddNote } from './components/note/AddNote'
+import { getNotes } from './utils/note.utils'
+import { enableNotes } from './redux/enableNotesSlice'
 
 function App() {
+  const dispatch = useDispatch()
   const showLogin = useSelector((state) => state.login)
-  const enableNotes = useSelector((state) => state.enableNotes)
+  const loadNotes = useSelector((state) => state.enableNotes)
+  console.log(loadNotes)
   const [loading, setLoading] = useState(true)
+  const [notes, setNotes] = useState([])
+  const verifyAuth = async () => {
+    const res = await getNotes()
+    if (res.status != 200) {
+      dispatch(enableNotes(false))
+    } else {
+      setNotes(res.data)
+      dispatch(enableNotes(true))
+    }
+  }
 
   useEffect(() => {
-    startServer().then(() => setLoading(false))
-  }, [])
+    verifyAuth().then(() => setLoading(false))
+  }, [loadNotes])
+
   return (
     <>
-      {/* <Navbar /> */}
-      <div className="bg-primary-600 h-screen z-20">
+      <Navbar />
+      <div className="bg-primary-600 h-[calc(100vh-96px)] z-20">
         {loading ? <LoadingModal /> : null}
-        {enableNotes ? (
+        {loadNotes ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-4 gap-4">
-              <NoteCard />
-              <NoteCard />
-              <NoteCard />
-              <NoteCard />
-              <NoteCard />
+              {notes.map((note) => {
+                return (
+                  <NoteCard
+                    key={note._id}
+                    title={note.title}
+                    text={note.text}
+                  />
+                )
+              })}
             </div>
             <AddNote />
           </>
