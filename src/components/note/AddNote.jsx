@@ -20,7 +20,7 @@ import * as yup from 'yup'
 import { SubmitButton } from '../button/SubmitButton'
 import { createNote } from '../../utils/note.utils'
 
-export const AddNote = () => {
+export const AddNote = ({ onNewNoteAdded }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const schema = yup.object({
     title: yup.string().trim().notRequired(),

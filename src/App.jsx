@@ -15,11 +15,11 @@ import { enableNotes } from './redux/enableNotesSlice'
 function App() {
   const dispatch = useDispatch()
   const showLogin = useSelector((state) => state.login)
-  const loadNotes = useSelector((state) => state.enableNotes)
-  console.log(loadNotes)
+  const isUserAuth = useSelector((state) => state.enableNotes)
+
   const [loading, setLoading] = useState(true)
   const [notes, setNotes] = useState([])
-  const verifyAuth = async () => {
+  const loadNotes = async () => {
     const res = await getNotes()
     if (res.status != 200) {
       setNotes([])
@@ -31,15 +31,19 @@ function App() {
   }
 
   useEffect(() => {
-    verifyAuth().then(() => setLoading(false))
-  }, [loadNotes])
+    loadNotes().then(() => setLoading(false))
+  }, [isUserAuth])
+
+  useEffect(() => {
+    loadNotes()
+  }, [notes])
 
   return (
     <>
       <Navbar />
       <div className="bg-primary-600 h-[calc(100vh-96px)] z-20">
         {loading ? <LoadingModal /> : null}
-        {loadNotes ? (
+        {isUserAuth ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-4 gap-4">
               {notes.map((note) => {
@@ -52,7 +56,7 @@ function App() {
                 )
               })}
             </div>
-            <AddNote />
+            <AddNote onNewNoteAdded={notes} />
           </>
         ) : (
           <ModalWindow
