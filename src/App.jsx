@@ -34,9 +34,9 @@ function App() {
     loadNotes().then(() => setLoading(false))
   }, [isUserAuth])
 
-  useEffect(() => {
+  /* useEffect(() => {
     loadNotes()
-  }, [notes])
+  }, [notes]) */
 
   return (
     <>
