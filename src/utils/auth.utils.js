@@ -1,16 +1,13 @@
 import axios from 'axios'
 import { API_URL } from '../config/config'
+axios.defaults.withCredentials = true
 
 export const login = async (data) => {
   try {
-    const response = await axios.post(
-      `${API_URL}/auth/login`,
-      {
-        email: data.email,
-        password: data.password,
-      },
-      { withCredentials: true }
-    )
+    const response = await axios.post(`${API_URL}/auth/login`, {
+      email: data.email,
+      password: data.password,
+    })
     return response
   } catch (error) {
     return error.response
@@ -19,14 +16,10 @@ export const login = async (data) => {
 
 export const registerUser = async (data) => {
   try {
-    const response = await axios.post(
-      `${API_URL}/auth/register`,
-      {
-        email: data.email,
-        password: data.password,
-      },
-      { withCredentials: true }
-    )
+    const response = await axios.post(`${API_URL}/auth/register`, {
+      email: data.email,
+      password: data.password,
+    })
     return response
   } catch (error) {
     return error.response
