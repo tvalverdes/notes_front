@@ -22,6 +22,7 @@ function App() {
   const verifyAuth = async () => {
     const res = await getNotes()
     if (res.status != 200) {
+      setNotes([])
       dispatch(enableNotes(false))
     } else {
       setNotes(res.data)
