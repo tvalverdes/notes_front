@@ -13,8 +13,8 @@ import { logout } from '../../utils/auth.utils'
 
 export const ProfileMenu = () => {
   const dispatch = useDispatch()
-  const logoutUser = () => {
-    logout()
+  const logoutUser = async () => {
+    await logout()
     dispatch(enableNotes(false))
   }
 
