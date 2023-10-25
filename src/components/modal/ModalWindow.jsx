@@ -29,7 +29,7 @@ export function ModalWindow({ component, loading }) {
         size={'sm'}
         isCentered
       >
-        <ModalOverlay />
+        <ModalOverlay backgroundColor={'#546E8050'} />
         <ModalContent className="mx-2" bg={'transparent'}>
           <div className="absolute mx-1 -top-12">
             <SwitchAuthButton />

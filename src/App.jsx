@@ -8,6 +8,8 @@ import { NoteCard } from './components/note/NoteCard'
 import { useEffect, useState } from 'react'
 import { LoadingModal } from './components/modal/LoadingModal'
 import { startServer } from './utils/loading.utils'
+import { Navbar } from './components/navbar/Navbar'
+import { AddNote } from './components/note/AddNote'
 
 function App() {
   const showLogin = useSelector((state) => state.login)
@@ -19,10 +21,20 @@ function App() {
   }, [])
   return (
     <>
-      <div className="bg-primary-300 h-screen z-20">
+      {/* <Navbar /> */}
+      <div className="bg-primary-600 h-screen z-20">
         {loading ? <LoadingModal /> : null}
-        {!enableNotes ? (
-          <NoteCard />
+        {enableNotes ? (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-4 gap-4">
+              <NoteCard />
+              <NoteCard />
+              <NoteCard />
+              <NoteCard />
+              <NoteCard />
+            </div>
+            <AddNote />
+          </>
         ) : (
           <ModalWindow
             loading={loading}

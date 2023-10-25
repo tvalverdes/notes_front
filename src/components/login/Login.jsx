@@ -19,7 +19,7 @@ export const Login = () => {
   const { t } = useTranslation()
   const toast = useToast()
   const showNotes = useSelector((state) => state.enableNotes)
- 
+
   const dispatch = useDispatch()
   const handleNotes = () => {
     dispatch(enableNotes(!showNotes))
