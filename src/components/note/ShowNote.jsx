@@ -16,6 +16,7 @@ import {
   ModalOverlay,
   Textarea,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -28,6 +29,15 @@ import { refreshNotes } from '../../redux/refreshNotesSlice'
 export const ShowNote = ({ id, title, text, isOpen, onClose }) => {
   const dispatch = useDispatch()
   const onNotesRefresh = useSelector((state) => state.refreshNotes)
+  const toast = useToast()
+  const showToast = () => {
+    toast({
+      title: '¡Nota modificada!',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
+  }
   const schema = yup.object({
     id: yup.string().required(),
     title: yup.string().trim().notRequired(),
@@ -51,6 +61,7 @@ export const ShowNote = ({ id, title, text, isOpen, onClose }) => {
       dispatch(refreshNotes(!onNotesRefresh))
     }
     onClose()
+    showToast()
   }
 
   return (

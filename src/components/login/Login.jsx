@@ -31,7 +31,7 @@ export const Login = () => {
         title,
         description,
         status: status || 'error',
-        duration: 4000,
+        duration: 3000,
         isClosable: false,
       })
     }

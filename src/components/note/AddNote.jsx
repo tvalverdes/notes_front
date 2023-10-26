@@ -8,7 +8,7 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
+  useToast,
   ModalHeader,
   ModalOverlay,
   Textarea,
@@ -24,6 +24,15 @@ import { refreshNotes } from '../../redux/refreshNotesSlice'
 
 export const AddNote = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const toast = useToast()
+  const showToast = () => {
+    toast({
+      title: '¡Nota creada!',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
+  }
   const dispatch = useDispatch()
   const onNotesRefresh = useSelector((state) => state.refreshNotes)
   const schema = yup.object({
@@ -40,6 +49,7 @@ export const AddNote = () => {
     } else {
       const res = await createNote(data)
       dispatch(refreshNotes(!onNotesRefresh))
+      showToast()
       onClose()
       reset()
     }
