@@ -1,5 +1,8 @@
 import {
   Button,
+  Editable,
+  EditableInput,
+  EditablePreview,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -18,52 +21,44 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { SubmitButton } from '../button/SubmitButton'
-import { createNote } from '../../utils/note.utils'
+import { createNote, updateNote } from '../../utils/note.utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { refreshNotes } from '../../redux/refreshNotesSlice'
 
-export const AddNote = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+export const ShowNote = ({ id, title, text, isOpen, onClose }) => {
   const dispatch = useDispatch()
   const onNotesRefresh = useSelector((state) => state.refreshNotes)
   const schema = yup.object({
+    id: yup.string().required(),
     title: yup.string().trim().notRequired(),
     text: yup.string().trim().required('Ingresa el texto de la nota'),
   })
-  const { register, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      id,
+      title,
+      text,
+    },
   })
   const { errors } = formState
   const onSubmit = async (data) => {
     if (errors.title || errors.text) {
       return
-    } else {
-      const res = await createNote(data)
-      dispatch(refreshNotes(!onNotesRefresh))
-      onClose()
-      reset()
     }
+    if (data.title !== title || data.text !== text) {
+      const res = await updateNote(data)
+      dispatch(refreshNotes(!onNotesRefresh))
+    }
+    onClose()
   }
+
   return (
     <>
-      <button onClick={onOpen}>
-        <div tabIndex="0" className="plusButton absolute right-10 bottom-10">
-          <svg
-            className="plusIcon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 30 30"
-          >
-            <g mask="url(#mask0_21_345)">
-              <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-            </g>
-          </svg>
-        </div>
-      </button>
-
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Crear Nota</ModalHeader>
+          <ModalHeader>Editar Nota</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6} className="flex flex-col gap-1">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -77,7 +72,8 @@ export const AddNote = () => {
                   borderColor="black"
                   errorBorderColor="crimson"
                   textColor="black"
-                />
+                  defaultValue={title}
+                ></Input>
               </FormControl>
               <FormControl isInvalid={errors} isRequired>
                 <FormLabel className="pt-2">Texto</FormLabel>
@@ -90,6 +86,7 @@ export const AddNote = () => {
                   errorBorderColor="crimson"
                   textColor="black"
                   resize={'none'}
+                  defaultValue={text}
                 />
                 <FormErrorMessage>{errors.text?.message}</FormErrorMessage>
               </FormControl>

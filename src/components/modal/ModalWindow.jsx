@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -11,13 +10,9 @@ import {
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { SwitchAuthButton } from '../button/SwitchAuthButton'
-import { changeModal } from '../../redux/loginSlice'
 
 export function ModalWindow({ component, loading }) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  /* const isUserLogger = () => {
-    document.
-  } */
+  const { onClose } = useDisclosure()
 
   const { t } = useTranslation()
   return (

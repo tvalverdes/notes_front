@@ -22,3 +22,17 @@ export const getNotes = async () => {
     return error.response
   }
 }
+
+export const updateNote = async (data) => {
+  const note = {
+    id: data.id,
+    title: data.title,
+    text: data.text,
+  }
+  try {
+    const response = await axios.put(`${API_URL}/note`, note)
+    return response
+  } catch (error) {
+    return error.response
+  }
+}
