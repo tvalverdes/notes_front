@@ -13,6 +13,7 @@ import { getNotes } from './utils/note.utils'
 import { enableNotes } from './redux/enableNotesSlice'
 import { refreshNotes } from './redux/refreshNotesSlice'
 import { Hero } from './components/hero/Hero'
+import { Footer } from './components/footer/Footer'
 
 function App() {
   const dispatch = useDispatch()
@@ -69,6 +70,7 @@ function App() {
           )}
         </div>
       </div>
+      {isUserAuth ? <Footer /> : null}
     </>
   )
 }

@@ -21,11 +21,11 @@ export const Navbar = () => {
       <nav className=" flex justify-between items-center p-4">
         <Avatar name="Logo" size="lg" src="logo.png" />
         <ul className="hidden md:flex gap-6">
-          {links.map((link) => (
+          {/* {links.map((link) => (
             <li key={link.text} className="text-secondary-50">
               {link.text}
             </li>
-          ))}
+          ))} */}
         </ul>
         <GiHamburgerMenu className="md:hidden text-xl" />
         <ProfileMenu />
