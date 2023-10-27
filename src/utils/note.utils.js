@@ -36,3 +36,15 @@ export const updateNote = async (data) => {
     return error.response
   }
 }
+
+export const deleteNote = async (id) => {
+  const data = {
+    id: id,
+  }
+  try {
+    const response = await axios.put(`${API_URL}/delete/note`, data)
+    return response
+  } catch (error) {
+    return error.response
+  }
+}
