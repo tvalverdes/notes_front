@@ -28,7 +28,7 @@ export const ProfileMenu = () => {
         _hover={{ bg: 'gray.600' }}
         _expanded={{ bg: 'blue.700' }}
       >
-        <AiOutlineUser className="text-secondary-50 text-2xl" />
+        <AiOutlineUser className="text-secondary-50 text-3xl" />
       </MenuButton>
       <MenuList>
         <MenuItem onClick={logoutUser}>Cerrar sesión</MenuItem>

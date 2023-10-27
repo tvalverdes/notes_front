@@ -77,7 +77,11 @@ export const AddNote = () => {
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
-        <ModalContent mx={2} pb={10}>
+        <ModalContent
+          mx={2}
+          minH={errors.title || errors.text ? 385 : 343}
+          maxH={errors.title || errors.text ? 385 : 343}
+        >
           <ModalHeader>Crear Nota</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6} className="flex flex-col gap-1">
@@ -107,7 +111,9 @@ export const AddNote = () => {
                   textColor="black"
                   resize={'none'}
                 />
-                <FormErrorMessage>{errors.text?.message}</FormErrorMessage>
+                <FormErrorMessage className="pb-2">
+                  {errors.text?.message}
+                </FormErrorMessage>
               </FormControl>
               <div className="w-full grid grid-cols-2">
                 <SubmitButton text={'Guardar'} />

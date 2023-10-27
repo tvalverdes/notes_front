@@ -80,8 +80,8 @@ export const ShowNote = ({ id, title, text, isOpen, onClose }) => {
         <ModalOverlay />
         <ModalContent
           mx={2}
-          minH={errors.title || errors.text ? 420 : 382}
-          maxH={errors.title || errors.text ? 420 : 382}
+          minH={errors.title || errors.text ? 428 : 392}
+          maxH={errors.title || errors.text ? 428 : 392}
         >
           <ModalHeader>
             {!isEditing ? title || 'Sin título' : 'Editar nota'}
