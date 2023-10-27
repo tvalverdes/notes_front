@@ -12,6 +12,7 @@ import { AddNote } from './components/note/AddNote'
 import { getNotes } from './utils/note.utils'
 import { enableNotes } from './redux/enableNotesSlice'
 import { refreshNotes } from './redux/refreshNotesSlice'
+import { Hero } from './components/hero/Hero'
 
 function App() {
   const dispatch = useDispatch()
@@ -57,6 +58,7 @@ function App() {
                   />
                 )
               })}
+              {notes.length == 0 ? <Hero /> : null}
               <AddNote />
             </>
           ) : (
