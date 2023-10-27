@@ -70,7 +70,7 @@ function App() {
           )}
         </div>
       </div>
-      {isUserAuth ? <Footer /> : null}
+      {/* {isUserAuth ? <Footer /> : null} */}
     </>
   )
 }

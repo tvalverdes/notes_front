@@ -6,6 +6,8 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #00233C;
+  position: relative;
+  min-height: 100vh;
 }
 
 .loader {
