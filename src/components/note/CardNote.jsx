@@ -33,7 +33,7 @@ export const CardNote = ({ id, title, text }) => {
         />
       ) : null}
       <button onClick={previewNote}>
-        <Card>
+        <Card bg={'yellow.400'}>
           <CardHeader>
             <Heading noOfLines={1} size="md">
               {title}

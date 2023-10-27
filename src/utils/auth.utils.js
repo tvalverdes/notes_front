@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { API_URL } from '../config/config'
+/* import { GoogleAuth } from 'google-auth-library'; */
+
 axios.defaults.withCredentials = true
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
@@ -14,6 +16,35 @@ export const login = async (data) => {
     return error.response
   }
 }
+
+/* export const loginWithGoogle = async (data) => {
+  const googleAuth = new GoogleAuth()
+const authResult = await googleAuth.signIn();
+
+const accessToken = authResult.accessToken;
+
+const res = await fetch('/auth/google', {
+  method: 'POST',
+  headers: {
+    Authorization: 'Bearer ' + accessToken,
+  },
+}); 
+
+// Procesar la respuesta del servidor
+const response = await res.json();
+
+// Si la autenticación fue exitosa
+if (response.success) {
+  // Almacenar el token de acceso en el almacenamiento local
+  localStorage.setItem('token', accessToken);
+
+  // Redireccionar al usuario a la página principal
+  window.location.href = '/';
+} else {
+  // Mostrar un mensaje de error
+  console.log(response.error);
+}
+}*/
 
 export const registerUser = async (data) => {
   try {

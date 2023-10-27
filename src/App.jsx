@@ -42,11 +42,11 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="bg-primary-600 h-[calc(100vh-96px)] z-20">
+      <div className={`bg-primary-600  h-auto z-20`}>
         {loading ? <LoadingModal /> : null}
-        {isUserAuth ? (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-4 gap-4">
+        <div className="bg-primary-600  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  p-4 gap-2">
+          {isUserAuth ? (
+            <>
               {notes.map((note) => {
                 return (
                   <CardNote
@@ -57,15 +57,15 @@ function App() {
                   />
                 )
               })}
-            </div>
-            <AddNote />
-          </>
-        ) : (
-          <ModalWindow
-            loading={loading}
-            component={showLogin ? <Login /> : <Register />}
-          />
-        )}
+              <AddNote />
+            </>
+          ) : (
+            <ModalWindow
+              loading={loading}
+              component={showLogin ? <Login /> : <Register />}
+            />
+          )}
+        </div>
       </div>
     </>
   )

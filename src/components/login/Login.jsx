@@ -12,7 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { login } from '../../utils/auth.utils'
 import { SubmitButton } from '../button/SubmitButton'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { enableNotes } from '../../redux/enableNotesSlice'
 import { getNotes } from '../../utils/note.utils'
 
@@ -48,10 +48,13 @@ export const Login = () => {
       ),
     password: yup.string().trim().required(t('passwordRequired')),
   })
-  const { register, handleSubmit, formState } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   })
-  const { errors } = formState
   const onSubmit = async (data) => {
     if (errors.email || errors.password) {
       return
@@ -76,7 +79,7 @@ export const Login = () => {
   }
 
   return (
-    <section className="container mx-0 flex gap-4 justify-center items-center">
+    <section className="container mx-0 flex flex-col gap-4 justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-4 w-full"
@@ -103,7 +106,7 @@ export const Login = () => {
           />
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>
-        <div className="flex justify-between">
+        {/* <div className="flex justify-between">
           <Checkbox
             color="#FFF"
             size="md"
@@ -113,7 +116,7 @@ export const Login = () => {
             {t('rememberMe')}
           </Checkbox>
           <Link color="#E59500">{t('forgotPassword')}</Link>
-        </div>
+        </div> */}
         <SubmitButton text={t('loginButtonText')} />
       </form>
     </section>

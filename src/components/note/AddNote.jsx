@@ -36,14 +36,19 @@ export const AddNote = () => {
   const dispatch = useDispatch()
   const onNotesRefresh = useSelector((state) => state.refreshNotes)
   const schema = yup.object({
-    title: yup.string().trim().notRequired(),
+    title: yup.string().trim().notRequired().max(100, 'Hasta 100 caracteres'),
     text: yup.string().trim().required('Ingresa el texto de la nota'),
   })
-  const { register, handleSubmit, formState, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
     resolver: yupResolver(schema),
   })
-  const { errors } = formState
   const onSubmit = async (data) => {
+    console.log(data)
     if (errors.title || errors.text) {
       return
     } else {
@@ -56,8 +61,8 @@ export const AddNote = () => {
   }
   return (
     <>
-      <button onClick={onOpen}>
-        <div tabIndex="0" className="plusButton absolute right-10 bottom-10">
+      <button onClick={onOpen} className="fixed right-10 bottom-10">
+        <div tabIndex="0" className="plusButton  fixed right-10 bottom-10">
           <svg
             className="plusIcon"
             xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +77,7 @@ export const AddNote = () => {
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent mx={2} pb={10}>
           <ModalHeader>Crear Nota</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6} className="flex flex-col gap-1">
@@ -88,6 +93,7 @@ export const AddNote = () => {
                   errorBorderColor="crimson"
                   textColor="black"
                 />
+                <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={errors} isRequired>
                 <FormLabel className="pt-2">Texto</FormLabel>
