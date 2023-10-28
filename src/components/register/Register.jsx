@@ -12,6 +12,7 @@ import { SubmitButton } from '../button/SubmitButton'
 import { registerUser } from '../../utils/auth.utils'
 import { useDispatch } from 'react-redux'
 import { changeModal } from '../../redux/loginSlice'
+import { checkError } from '../../utils/errors. utils'
 
 export const Register = () => {
   const { t } = useTranslation()
@@ -21,14 +22,13 @@ export const Register = () => {
   }
   const toast = useToast()
   const id = 'toast_id'
-  const showToast = (title, description, status) => {
+  const showToast = (title, status) => {
     if (!toast.isActive(id)) {
       toast({
         id,
         title,
-        description,
-        status: status || 'error',
-        duration: 4000,
+        status: status || 'success',
+        duration: 3000,
         isClosable: false,
       })
     }
@@ -58,20 +58,15 @@ export const Register = () => {
       return
     } else {
       const res = await registerUser(data)
-      if (res.status == 400) {
-        return showToast(
-          'Correo En Uso',
-          'Prueba con otro correo o inicia sesión'
-        )
+      if (res.status == 201) {
+        showToast('Cuenta creada correctamente, inicia sesión')
+        changeToLogin()
       }
-      if (res.status == 500) {
-        return showToast(
-          'Servidor no disponible',
-          'Inténtalo de nuevo más tarde o contacta con el administrador'
-        )
+      const errorFound = checkError(res.status)
+      if (errorFound) {
+        return showToast(errorFound.message, errorFound.status)
       }
-      showToast('Cuenta creada correctamente', '¡Inicia sesión!', 'success')
-      changeToLogin()
+      return showToast('Error al iniciar sesión', 'error')
     }
   }
 

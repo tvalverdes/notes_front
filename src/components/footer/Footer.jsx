@@ -36,6 +36,7 @@ export const Footer = () => {
           {socials.map((social) => {
             return (
               <Link
+                key={social.name}
                 size={'lg'}
                 bg={'transparent'}
                 title={social.name}

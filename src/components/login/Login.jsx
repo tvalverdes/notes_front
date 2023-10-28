@@ -15,6 +15,7 @@ import { SubmitButton } from '../button/SubmitButton'
 import { useDispatch } from 'react-redux'
 import { enableNotes } from '../../redux/enableNotesSlice'
 import { getNotes } from '../../utils/note.utils'
+import { checkError } from '../../utils/errors. utils'
 
 export const Login = () => {
   const { t } = useTranslation()
@@ -24,13 +25,12 @@ export const Login = () => {
     dispatch(enableNotes(true))
   }
   const id = 'toast_id'
-  const showToast = (title, description, status) => {
+  const showToast = (title, status) => {
     if (!toast.isActive(id)) {
       toast({
         id,
         title,
-        description,
-        status: status || 'error',
+        status: status || 'success',
         duration: 3000,
         isClosable: false,
       })
@@ -60,21 +60,16 @@ export const Login = () => {
       return
     } else {
       const res = await login(data)
-      if (res.status == 404) {
-        return showToast(
-          'Credenciales incorrectas',
-          'Corrige tu correo o contraseña y vuelve a intentarlo'
-        )
+      if (res.status == 200) {
+        showNotes()
+        getNotes()
+        showToast('Sesión iniciada correctamente')
       }
-      if (res.status == 500) {
-        return showToast(
-          'Servidor no disponible',
-          'Inténtalo de nuevo más tarde o contacta con el administrador'
-        )
+      const errorFound = checkError(res.status)
+      if (errorFound) {
+        return showToast(errorFound.message, errorFound.status)
       }
-      showNotes()
-      getNotes()
-      showToast('Sesión iniciada correctamente', '¡Bienvenido!', 'success')
+      return showToast('Error al iniciar sesión', 'error')
     }
   }
 

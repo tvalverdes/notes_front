@@ -21,14 +21,15 @@ import { SubmitButton } from '../button/SubmitButton'
 import { createNote } from '../../utils/note.utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { refreshNotes } from '../../redux/refreshNotesSlice'
+import { checkError } from '../../utils/errors. utils'
 
 export const AddNote = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast()
-  const showToast = () => {
+  const showToast = (message, status) => {
     toast({
-      title: '¡Nota creada!',
-      status: 'success',
+      title: message,
+      status: status || 'success',
       duration: 3000,
       isClosable: true,
     })
@@ -48,16 +49,21 @@ export const AddNote = () => {
     resolver: yupResolver(schema),
   })
   const onSubmit = async (data) => {
-    console.log(data)
     if (errors.title || errors.text) {
       return
-    } else {
-      const res = await createNote(data)
-      dispatch(refreshNotes(!onNotesRefresh))
-      showToast()
-      onClose()
-      reset()
     }
+    const res = await createNote(data)
+    if (res.status == 201) {
+      dispatch(refreshNotes(!onNotesRefresh))
+      showToast('¡Nota creada!')
+      onClose()
+      return reset()
+    }
+    const errorFound = checkError(res.status)
+    if (errorFound) {
+      return showToast(errorFound.message, errorFound.status)
+    }
+    return showToast('Error al crear la nota', 'error')
   }
   return (
     <>
