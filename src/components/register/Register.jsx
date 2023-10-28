@@ -66,7 +66,7 @@ export const Register = () => {
       if (errorFound) {
         return showToast(errorFound.message, errorFound.status)
       }
-      return showToast('Error al iniciar sesión', 'error')
+      return showToast('Error al registrarse', 'error')
     }
   }
 
