@@ -11,7 +11,6 @@ import { Navbar } from './components/navbar/Navbar'
 import { AddNote } from './components/note/AddNote'
 import { getNotes } from './utils/note.utils'
 import { enableNotes } from './redux/enableNotesSlice'
-import { refreshNotes } from './redux/refreshNotesSlice'
 import { Hero } from './components/hero/Hero'
 import { Footer } from './components/footer/Footer'
 
@@ -44,9 +43,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className={`bg-primary-600  h-auto z-20`}>
+      <div className={`bg-primary-600 main-div z-20`}>
         {loading ? <LoadingModal /> : null}
-        <div className="bg-primary-600  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  p-4 gap-2">
+        <div className="bg-primary-600 cards  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-4 gap-2">
           {isUserAuth ? (
             <>
               {notes.map((note) => {
@@ -70,7 +69,7 @@ function App() {
           )}
         </div>
       </div>
-      {/* {isUserAuth ? <Footer /> : null} */}
+      <Footer />
     </>
   )
 }

@@ -33,18 +33,23 @@ export const CardNote = ({ id, title, text }) => {
         />
       ) : null}
       <button onClick={previewNote}>
-        <Card bg={'yellow.400'}>
-          <CardHeader>
-            <Heading noOfLines={1} size="md">
-              {title}
-            </Heading>
-            <Divider className="pt-2 -mb-8" />
-          </CardHeader>
+        <Card bg={'yellow.400'} minH={'120'}>
+          {title ? (
+            <CardHeader>
+              <Heading noOfLines={1} size="sm">
+                {title}
+              </Heading>
+
+              <Divider className="pt-2 -mb-8" />
+            </CardHeader>
+          ) : null}
+
           <CardBody>
             <Text
-              noOfLines={1}
+              noOfLines={title ? 1 : 3}
               pt="2"
               fontSize="sm"
+              textAlign={'left'}
               className="text-primary-500"
             >
               {text}

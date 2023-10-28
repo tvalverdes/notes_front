@@ -6,9 +6,48 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: #00233C;
-  position: relative;
   min-height: 100vh;
+  height: 100vh;
 }
+
+body {
+  font-family: 'Heebo', sans-serif;
+}
+
+.main-div {
+  min-height: 80vh;
+  max-height: 80vh;
+}
+
+
+.cards {
+  width: auto;;
+  height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.footer {
+  min-height: 20vh;
+  max-height: 20vh;
+  bottom: 0;
+
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(transparent, #E59500);
+}
+
+::-webkit-scrollbar-thumb:hover {  
+  background: linear-gradient(transparent, #FFF);
+}
+
+
+/* LOADER */
 
 .loader {
   --background: linear-gradient(135deg, #23C4F8, #275EFE);

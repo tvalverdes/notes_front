@@ -6,11 +6,13 @@ import './index.css'
 import './config/i18next.config.js'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import '@fontsource/heebo'
+import theme from './theme.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
     </Provider>

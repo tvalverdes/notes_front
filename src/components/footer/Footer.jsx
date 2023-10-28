@@ -29,7 +29,7 @@ export const Footer = () => {
   ]
 
   return (
-    <footer className="bg-primary-600 w-full z-0 gap-12 sm:gap-4 h-40 fixed bottom-0 text-primary-50 text-lg px-8 p-4">
+    <footer className="bg-primary-600 w-full z-0 gap-12 sm:gap-4 footer absolute grid grid-cols-1 sm:grid-cols-3 bottom-0 text-primary-50 text-lg px-8 p-4">
       <div>
         Contacto:
         <div className="flex sm:grid sm:grid-cols-2 lg:flex w-fit gap-4">
@@ -55,7 +55,7 @@ export const Footer = () => {
           })}
         </div>
       </div>
-      <div className="flex items-end justify-start sm:justify-center">
+      <div className="flex items-end justify-start pb-4 sm:justify-center">
         <>&copy; {new Date().getFullYear()} por Tyrone Valverde</>
       </div>
       <div className="flex gap-2 h-fit">

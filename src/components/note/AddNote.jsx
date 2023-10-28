@@ -61,8 +61,11 @@ export const AddNote = () => {
   }
   return (
     <>
-      <button onClick={onOpen} className="fixed right-10 bottom-10 z-10">
-        <div tabIndex="0" className="plusButton  fixed right-10 bottom-10 z-10">
+      <button onClick={onOpen} className="absolute right-10 bottom-44 z-10">
+        <div
+          tabIndex="0"
+          className="plusButton  absolute right-10 -bottom-12 md:-bottom-10 lg:-bottom-4 -left-4 z-10"
+        >
           <svg
             className="plusIcon"
             xmlns="http://www.w3.org/2000/svg"
