@@ -88,6 +88,7 @@ export const Login = () => {
             borderColor="white"
             errorBorderColor="crimson"
             textColor="white"
+            autoComplete="off"
           />
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
           <Input
@@ -98,6 +99,7 @@ export const Login = () => {
             placeholder={t('placeholderPassword')}
             errorBorderColor="crimson"
             textColor="white"
+            autoComplete="off"
           />
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>

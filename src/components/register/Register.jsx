@@ -85,6 +85,7 @@ export const Register = () => {
             borderColor="white"
             errorBorderColor="crimson"
             textColor="white"
+            autoComplete="off"
           />
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
 
@@ -97,6 +98,7 @@ export const Register = () => {
             borderColor="white"
             errorBorderColor="crimson"
             textColor="white"
+            autoComplete="off"
           />
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>
