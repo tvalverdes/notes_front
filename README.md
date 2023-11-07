@@ -29,7 +29,11 @@ Front end
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd notes_back
+```
+
+```bash
+  cd notes_front
 ```
 
 Install dependencies
