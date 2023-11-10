@@ -43,7 +43,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className={`bg-primary-600 main-div z-20`}>
+      <main className={`bg-primary-600 main-div z-20`}>
         {loading ? <LoadingModal /> : null}
         <div className="bg-primary-600 cards  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-4 gap-2">
           {isUserAuth ? (
@@ -68,7 +68,7 @@ function App() {
             />
           )}
         </div>
-      </div>
+      </main>
       <Footer />
     </>
   )

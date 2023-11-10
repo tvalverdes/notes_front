@@ -4,7 +4,7 @@ import { FaWhatsappSquare } from 'react-icons/fa'
 import { Divider, Link, Stack, Text } from '@chakra-ui/react'
 
 export const Footer = () => {
-  const iconSize = 'text-2xl md:text-3xl hover:scale-125 transition-all'
+  const iconSize = 'text-2xl md:text-3xl hover:scale-125 transition-all '
   const socials = [
     {
       name: 'GitHub',
@@ -32,7 +32,7 @@ export const Footer = () => {
     <footer className="bg-primary-600 w-full z-0 gap-12 sm:gap-4 footer absolute grid grid-cols-1 sm:grid-cols-3 bottom-0 text-primary-50 text-lg px-8 p-4">
       <div>
         Contacto:
-        <div className="flex sm:grid sm:grid-cols-2 lg:flex w-fit gap-4">
+        <div className="flex sm:grid sm:grid-cols-2 lg:flex w-fit gap-4 z-[9999999]">
           {socials.map((social) => {
             return (
               <Link

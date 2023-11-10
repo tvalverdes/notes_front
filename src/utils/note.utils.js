@@ -17,6 +17,7 @@ export const createNote = async (data) => {
 export const getNotes = async () => {
   try {
     const response = await axios.get(`${API_URL}/notes`)
+    console.log(response);
     return response
   } catch (error) {
     return error.response
