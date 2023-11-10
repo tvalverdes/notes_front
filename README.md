@@ -1,8 +1,94 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# NOTLY: Notepad
 
-Currently, two official plugins are available:
+A free cloud-based note log for everyone.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Features
+
+- 📝 CRUD of notes
+- 🔒 Authentication
+- 📱 Responsive design
+- 📏 Request rate limit
+## Run Locally
+
+Clone repositories
+
+Back end
+
+```bash
+  git clone https://github.com/tvalverdes/notes_back.git
+```
+
+Front end
+
+```bash
+  git clone https://github.com/tvalverdes/notes_front.git
+```
+
+Go to the project directory
+
+```bash
+  cd notes_back
+```
+
+```bash
+  cd notes_front
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server (before this step, add "Environment Variables")
+
+```bash
+  npm run start
+```
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+Back end
+
+`PORT`
+
+`MONGO_URI`
+
+`JWT_SECRET_KEY`
+
+`CORS_URL`
+
+Front end
+
+`API_URL`
+
+## Recomendaciones
+
+- Run the back and front on different terminals.
+- The environment variables API_URL and CORS_URL must not contain a slash at the end. Example: http://localhost:3000
+## Feedback
+
+If you have any feedback, please reach out to me at tvalverdes9@gmail.com
+
+
+## Screenshots
+
+![App Screenshot](https://i.imgur.com/sLvPzJU.png)
+
+![Notes Screenshot](https://imgur.com/FZDARUu.png)
+
+
+## Author
+
+- [@tvalverdes](https://github.com/tvalverdes)
+
+
+## 🛠 Skills
+React.js, Redux, Tailwind CSS, Chakra UI, MongoDB, Node.js, Javascript, HTML, CSS
+
+
